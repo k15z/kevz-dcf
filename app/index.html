@@ -38,7 +38,12 @@
                 url: "/api/hello",
                 data: JSON.stringify({"world": $("#text").val()}),
                 contentType: "application/json; charset=utf-8",
-                dataType: "json"
+                dataType: "json",
+                complete: function() {
+                    console.log("done")
+                    alert("success!");
+                    window.location.reload();
+                }
             });
         }
     </script>
