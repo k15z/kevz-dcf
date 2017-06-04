@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>kevz-dcf</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.2/css/bulma.min.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.3.3/vue.min.js"></script>
+    <style>
+        .center-box {
+            width: 360px;
+            height: 360px;
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="center-box has-text-centered">
+        <h1 class="title">data collection framework</h1>
+        <div class="field has-addons">
+            <p class="control is-expanded">
+                <input id="text" class="input" type="text" placeholder="Say something interesting..."></input>
+            </p>
+            <p class="control">
+                <a class="button is-info" onclick="submit()">Submit</a>
+            </p>
+        </div>
+        <p>
+            This example collects some text and posts it to the <code>/hello</code> endpoint. The 
+            values are stored as JSON files on the server under <code>data/hello</code>.
+        </p>
+    </div>
+    <script>
+        function submit() {
+            $.ajax({
+                type: "POST",
+                url: "/api/hello",
+                data: JSON.stringify({"world": $("#text").val()}),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json"
+            });
+        }
+    </script>
+</body>
+</html>
